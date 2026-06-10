@@ -1,4 +1,6 @@
 import type { ContentItem } from "@/data/mediaAmbassador";
+import ReelPlayer from "@/components/ReelPlayer";
+import { isInstagramReelUrl } from "@/utils/instagram";
 
 type ReelCardProps = {
   item: ContentItem;
@@ -6,9 +8,12 @@ type ReelCardProps = {
 
 export default function ReelCard({ item }: ReelCardProps) {
   const isPlaceholderLink = item.link.startsWith("[insert");
+  const canPlayInline = isInstagramReelUrl(item.link);
 
   return (
     <article className="reel-card">
+      <ReelPlayer link={item.link} title={item.title} />
+
       <div className="reel-card-header">
         <div className="reel-card-meta">
           <span className="reel-card-platform">{item.platform}</span>
@@ -18,15 +23,16 @@ export default function ReelCard({ item }: ReelCardProps) {
         <p className="reel-card-desc">{item.description}</p>
       </div>
 
-      {/* REPLACE: set item.link in src/data/mediaAmbassador.ts */}
-      {isPlaceholderLink ? (
-        <div className="reel-card-embed reel-card-embed--placeholder">
-          <span className="reel-card-embed-label">Reel preview</span>
-          <p className="reel-card-embed-hint">
-            Add reel link in <code>mediaAmbassador.ts</code>
-          </p>
-        </div>
-      ) : (
+      {canPlayInline ? (
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noreferrer"
+          className="reel-card-link reel-card-link--secondary"
+        >
+          Open on Instagram →
+        </a>
+      ) : !isPlaceholderLink ? (
         <a
           href={item.link}
           target="_blank"
@@ -35,7 +41,7 @@ export default function ReelCard({ item }: ReelCardProps) {
         >
           View reel →
         </a>
-      )}
+      ) : null}
 
       <dl className="reel-card-stats">
         <div className="reel-card-stat">

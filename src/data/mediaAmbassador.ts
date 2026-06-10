@@ -95,6 +95,31 @@ export const mediaAmbassadorCopy = {
    */
   contentCategories: [
     {
+      id: "clog-style",
+      title: "Clog-Style Content",
+      description:
+        "Creative clog-style short-form content I developed — hook-driven, student-focused storytelling. My strongest-performing example below.",
+      items: [
+        {
+          id: "clog-featured",
+          title: "Top-performing reel — hook ideation",
+          platform: "Instagram" as ContentPlatform,
+          link: "https://www.instagram.com/reel/DILeMTfTyRO/",
+          role: "hook ideation" as ContentRole,
+          description:
+            "Vlog-style reel I helped ideate — strongest performer in this portfolio by views, likes, and comments.",
+          stats: {
+            views: "24,200",
+            likes: "244",
+            comments: "13",
+            sharesSaves: "—",
+            engagementNote:
+              "Best-performing reel I helped ideate — 24.2K views.",
+          },
+        },
+      ],
+    },
+    {
       id: "gdg-content",
       title: "GDG on Campus USYD Content",
       description:
@@ -311,79 +336,6 @@ export const mediaAmbassadorCopy = {
         },
       ],
     },
-    {
-      id: "on-camera",
-      title: "On-Camera / Presenter Content",
-      description:
-        "Highlighted on-camera work — see GDG on Campus USYD Content for the full series of 13 reels.",
-      items: [
-        {
-          id: "camera-highlight",
-          title: "Top on-camera GDG reel by views",
-          platform: "Instagram" as ContentPlatform,
-          link: "https://www.instagram.com/gdg.usyd/reel/DW8t163J3MK/",
-          role: "on-camera presenter" as ContentRole,
-          description:
-            "My highest-view on-camera reel for @gdg.usyd — representative of the on-camera content I deliver for the society.",
-          stats: {
-            views: "8,685",
-            likes: "32",
-            comments: "0",
-            sharesSaves: "—",
-            engagementNote: "Highest views among my on-camera GDG reels.",
-          },
-        },
-      ],
-    },
-    {
-      id: "mini-vlogs",
-      title: "Personal Mini Vlogs",
-      description:
-        "Personal short-form content on @bhakthi_ — mini vlogs and student-life storytelling.",
-      items: [
-        {
-          id: "vlog-1",
-          title: "[insert reel title]",
-          platform: "Instagram" as ContentPlatform,
-          link: "[insert reel link]",
-          role: "mini vlog creator" as ContentRole,
-          description:
-            "[insert short description — e.g. day-in-the-life or campus mini vlog]",
-          stats: {
-            views: "[insert views]",
-            likes: "[insert likes]",
-            comments: "[insert comments]",
-            sharesSaves: "[insert shares/saves]",
-            engagementNote: "[insert engagement detail]",
-          },
-        },
-      ],
-    },
-    {
-      id: "planning-hooks",
-      title: "Content Planning & Hooks",
-      description:
-        "Reels where I contributed hook ideation and content direction — my strongest-performing example below.",
-      items: [
-        {
-          id: "plan-ideation-top",
-          title: "Top-performing reel — hook ideation",
-          platform: "Instagram" as ContentPlatform,
-          link: "https://www.instagram.com/reel/DILeMTfTyRO/",
-          role: "hook ideation" as ContentRole,
-          description:
-            "Reel I helped ideate — strongest performer in this portfolio by views, likes, and comments.",
-          stats: {
-            views: "24,200",
-            likes: "244",
-            comments: "40",
-            sharesSaves: "—",
-            engagementNote:
-              "Best-performing reel I helped ideate — 24.2K views, 1.2% engagement rate (likes + comments ÷ views).",
-          },
-        },
-      ],
-    },
   ] satisfies ContentCategory[],
 
   /**
@@ -406,18 +358,18 @@ export const mediaAmbassadorCopy = {
       },
       {
         label: "Engagement",
-        value: "1.2%",
+        value: "1.1%",
         detail: "engagement rate on top-performing reel",
       },
       {
-        label: "Audience growth",
-        value: "[insert follower growth or audience interaction metric]",
-        detail: "audience growth/interaction since joining media relations",
+        label: "Total interactions",
+        value: "749+",
+        detail: "likes & comments across selected reels",
       },
       {
-        label: "Reels created",
+        label: "Reels contributed",
         value: "14",
-        detail: "reels on-camera or contributed to (13 GDG + 1 ideation)",
+        detail: "on-camera GDG reels + vlog-style ideation",
       },
     ],
   },

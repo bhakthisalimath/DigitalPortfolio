@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 
 const navItems = [
+  { href: "/#content-impact", label: "Impact" },
+  { href: "/#japan-ole", label: "Japan" },
   { href: "/#featured-reels", label: "Reels" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#content-process", label: "Process" },
 ] as const;
 
 function SunIcon() {

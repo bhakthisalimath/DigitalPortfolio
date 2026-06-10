@@ -1,58 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect } from "react";
 import ContentCategorySection from "@/components/ContentCategorySection";
 import { mediaAmbassadorCopy } from "@/data/mediaAmbassador";
 
 const copy = mediaAmbassadorCopy;
 
 export default function HomePage() {
-  const [emailMenuOpen, setEmailMenuOpen] = useState(false);
-  const [emailCopied, setEmailCopied] = useState(false);
-  const emailMenuRef = useRef<HTMLDivElement>(null);
-
-  const emailLink = copy.contact.links.find((l) => l.label === "Email");
-  const emailAddress = emailLink?.handle.startsWith("[insert")
-    ? "bhakthisalimath@gmail.com"
-    : emailLink?.handle ?? "bhakthisalimath@gmail.com";
-  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}`;
-
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   }, []);
-
-  const openGmail = useCallback(() => {
-    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
-    setEmailMenuOpen(false);
-  }, [gmailComposeUrl]);
-
-  const copyEmail = useCallback(() => {
-    if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(emailAddress).then(() => {
-        setEmailCopied(true);
-        setEmailMenuOpen(false);
-        setTimeout(() => setEmailCopied(false), 2000);
-      });
-    }
-  }, [emailAddress]);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        emailMenuRef.current &&
-        !emailMenuRef.current.contains(event.target as Node)
-      ) {
-        setEmailMenuOpen(false);
-      }
-    }
-    if (emailMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }
-  }, [emailMenuOpen]);
 
   useEffect(() => {
     const elements = Array.from(
@@ -113,23 +73,16 @@ export default function HomePage() {
             <button
               type="button"
               className="section-cta section-cta--primary"
+              onClick={() => scrollTo("content-impact")}
+            >
+              Content Impact
+            </button>
+            <button
+              type="button"
+              className="section-cta"
               onClick={() => scrollTo("featured-reels")}
             >
               {copy.hero.cta.reels}
-            </button>
-            <button
-              type="button"
-              className="section-cta"
-              onClick={() => scrollTo("scholarship-fit")}
-            >
-              {copy.hero.cta.experience}
-            </button>
-            <button
-              type="button"
-              className="section-cta"
-              onClick={() => scrollTo("contact")}
-            >
-              {copy.hero.cta.contact}
             </button>
           </div>
         </div>
@@ -137,57 +90,14 @@ export default function HomePage() {
         <button
           type="button"
           className="hero-scroll-button"
-          onClick={() => scrollTo("scholarship-fit")}
+          onClick={() => scrollTo("content-impact")}
           aria-label={copy.hero.arrowLabel}
         >
           <span className="hero-scroll-icon">↓</span>
         </button>
       </section>
 
-      {/* ===== Scholarship Fit ===== */}
-      <section
-        id="scholarship-fit"
-        className="home-section reveal-on-scroll"
-      >
-        <header className="home-section-header">
-          <h2 className="home-section-title">{copy.scholarshipFit.title}</h2>
-          <p className="home-section-subtitle">
-            {copy.scholarshipFit.subtitle}
-          </p>
-        </header>
-
-        <div className="fit-grid">
-          {copy.scholarshipFit.points.map((point) => (
-            <div key={point.title} className="fit-card">
-              <h3 className="fit-card-title">{point.title}</h3>
-              <p className="fit-card-body">{point.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Featured Reels ===== */}
-      <section
-        id="featured-reels"
-        className="home-section reveal-on-scroll"
-      >
-        <header className="home-section-header">
-          <h2 className="home-section-title">Featured Reels & Content</h2>
-          <p className="home-section-subtitle">
-            Selected short-form content — each card shows my role, platform, and
-            impact. Add reel links in{" "}
-            <code className="inline-code">mediaAmbassador.ts</code>.
-          </p>
-        </header>
-
-        <div className="content-categories">
-          {copy.contentCategories.map((category) => (
-            <ContentCategorySection key={category.id} category={category} />
-          ))}
-        </div>
-      </section>
-
-      {/* ===== Content Impact ===== */}
+      {/* ===== 1. Content Impact ===== */}
       <section
         id="content-impact"
         className="home-section reveal-on-scroll"
@@ -211,7 +121,47 @@ export default function HomePage() {
         <p className="impact-note">{copy.contentImpact.note}</p>
       </section>
 
-      {/* ===== Content Process ===== */}
+      {/* ===== 2. Japan OLE ===== */}
+      <section
+        id="japan-ole"
+        className="home-section home-section--warm reveal-on-scroll"
+      >
+        <header className="home-section-header">
+          <h2 className="home-section-title">{copy.japanOle.title}</h2>
+          <p className="home-section-subtitle">{copy.japanOle.subtitle}</p>
+        </header>
+
+        <p className="japan-intro">{copy.japanOle.intro}</p>
+
+        <ul className="japan-topics">
+          {copy.japanOle.topics.map((topic) => (
+            <li key={topic} className="japan-topic">
+              {topic}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* ===== 3. Featured Reels ===== */}
+      <section
+        id="featured-reels"
+        className="home-section reveal-on-scroll"
+      >
+        <header className="home-section-header">
+          <h2 className="home-section-title">Featured Reels & Content</h2>
+          <p className="home-section-subtitle">
+            Tap play to watch reels here — no need to leave the site.
+          </p>
+        </header>
+
+        <div className="content-categories">
+          {copy.contentCategories.map((category) => (
+            <ContentCategorySection key={category.id} category={category} />
+          ))}
+        </div>
+      </section>
+
+      {/* ===== 4. Content Process ===== */}
       <section
         id="content-process"
         className="home-section reveal-on-scroll"
@@ -238,156 +188,6 @@ export default function HomePage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ===== Japan OLE ===== */}
-      <section id="japan-ole" className="home-section home-section--warm reveal-on-scroll">
-        <header className="home-section-header">
-          <h2 className="home-section-title">{copy.japanOle.title}</h2>
-          <p className="home-section-subtitle">{copy.japanOle.subtitle}</p>
-        </header>
-
-        <p className="japan-intro">{copy.japanOle.intro}</p>
-
-        <ul className="japan-topics">
-          {copy.japanOle.topics.map((topic) => (
-            <li key={topic} className="japan-topic">
-              {topic}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* ===== About ===== */}
-      <section id="about" className="home-section reveal-on-scroll">
-        <header className="home-section-header">
-          <h2 className="home-section-title">{copy.about.title}</h2>
-          <p className="home-section-subtitle">{copy.about.subtitle}</p>
-        </header>
-
-        <div className="about-card">
-          <div className="about-text">
-            {copy.about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-            ))}
-          </div>
-
-          <ul className="about-facts">
-            {copy.about.facts.map((fact) => (
-              <li key={fact}>{fact}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ===== Contact ===== */}
-      <section id="contact" className="home-section reveal-on-scroll">
-        <header className="home-section-header">
-          <h2 className="home-section-title">{copy.contact.title}</h2>
-          <p className="home-section-subtitle">{copy.contact.subtitle}</p>
-        </header>
-
-        <p className="contact-blurb">{copy.contact.blurb}</p>
-
-        <div className="contact-links">
-          {copy.contact.links.map((link) => {
-            const isPlaceholder = link.href.startsWith("[insert");
-            const isEmail = link.label === "Email";
-
-            if (isEmail) {
-              return (
-                <div key={link.label} ref={emailMenuRef} className="hero-email-wrap">
-                  <button
-                    type="button"
-                    onClick={() => setEmailMenuOpen((open) => !open)}
-                    className="contact-link-pill"
-                    aria-label="Email options"
-                    aria-expanded={emailMenuOpen}
-                    aria-haspopup="true"
-                  >
-                    {link.icon && (
-                      <img
-                        src={link.icon}
-                        alt=""
-                        className="hero-social-icon"
-                        aria-hidden
-                      />
-                    )}
-                    <span className="contact-link-label">{link.label}</span>
-                    <span className="contact-link-handle">{link.handle}</span>
-                  </button>
-                  {emailMenuOpen && (
-                    <div
-                      className="hero-email-menu"
-                      role="menu"
-                      aria-label="Email options"
-                    >
-                      <a
-                        href={gmailComposeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        role="menuitem"
-                        className="hero-email-menu-item"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          openGmail();
-                        }}
-                      >
-                        Open in Gmail
-                      </a>
-                      <button
-                        type="button"
-                        role="menuitem"
-                        className="hero-email-menu-item"
-                        onClick={copyEmail}
-                      >
-                        {emailCopied ? "Copied!" : "Copy email address"}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            }
-
-            if (isPlaceholder) {
-              return (
-                <div key={link.label} className="contact-link-pill contact-link-pill--placeholder">
-                  {link.icon && (
-                    <img
-                      src={link.icon}
-                      alt=""
-                      className="hero-social-icon"
-                      aria-hidden
-                    />
-                  )}
-                  <span className="contact-link-label">{link.label}</span>
-                  <span className="contact-link-handle">{link.handle}</span>
-                </div>
-              );
-            }
-
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="contact-link-pill"
-              >
-                {link.icon && (
-                  <img
-                    src={link.icon}
-                    alt=""
-                    className="hero-social-icon"
-                    aria-hidden
-                  />
-                )}
-                <span className="contact-link-label">{link.label}</span>
-                <span className="contact-link-handle">{link.handle}</span>
-              </a>
-            );
-          })}
         </div>
       </section>
     </div>
