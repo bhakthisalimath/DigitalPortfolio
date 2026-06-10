@@ -123,7 +123,7 @@ export const mediaAmbassadorCopy = {
       id: "gdg-content",
       title: "GDG on Campus USYD Content",
       description:
-        "On-camera reels for @gdg.usyd — 13 society posts I appeared in through my Media Relations role, oldest to newest.",
+        "On-camera reels for @gdg.usyd — 13 society posts I appeared in through my Media Relations role, newest to oldest.",
       items: [
         {
           id: "gdg-1",

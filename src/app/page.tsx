@@ -150,7 +150,7 @@ export default function HomePage() {
         <header className="home-section-header">
           <h2 className="home-section-title">Featured Reels & Content</h2>
           <p className="home-section-subtitle">
-            Tap play to watch reels here — no need to leave the site.
+            Reels load with their Instagram preview — tap play on any reel to watch without leaving the site.
           </p>
         </header>
 

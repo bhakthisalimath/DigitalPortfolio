@@ -8,6 +8,11 @@ type ContentCategorySectionProps = {
 export default function ContentCategorySection({
   category,
 }: ContentCategorySectionProps) {
+  const items =
+    category.id === "gdg-content"
+      ? [...category.items].reverse()
+      : category.items;
+
   return (
     <div className="content-category">
       <header className="content-category-header">
@@ -15,7 +20,7 @@ export default function ContentCategorySection({
         <p className="content-category-desc">{category.description}</p>
       </header>
       <div className="reel-grid">
-        {category.items.map((item) => (
+        {items.map((item) => (
           <ReelCard key={item.id} item={item} />
         ))}
       </div>

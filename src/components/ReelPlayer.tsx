@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getInstagramEmbedUrl,
   isInstagramReelUrl,
@@ -12,9 +12,33 @@ type ReelPlayerProps = {
 };
 
 export default function ReelPlayer({ link, title }: ReelPlayerProps) {
-  const [playing, setPlaying] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const embedUrl = getInstagramEmbedUrl(link);
   const canEmbed = isInstagramReelUrl(link) && embedUrl != null;
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || !canEmbed) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [canEmbed]);
 
   if (!canEmbed) {
     return (
@@ -25,32 +49,22 @@ export default function ReelPlayer({ link, title }: ReelPlayerProps) {
     );
   }
 
-  if (playing) {
-    return (
-      <div className="reel-player reel-player--active">
+  return (
+    <div ref={containerRef} className="reel-player reel-player--embed">
+      {shouldLoad ? (
         <iframe
-          src={`${embedUrl}?autoplay=1`}
+          src={embedUrl}
           title={`Instagram reel: ${title}`}
           className="reel-player-iframe"
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          loading="lazy"
         />
-      </div>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      className="reel-player reel-player--preview"
-      onClick={() => setPlaying(true)}
-      aria-label={`Play reel: ${title}`}
-    >
-      <div className="reel-player-preview-bg" aria-hidden="true" />
-      <span className="reel-player-play-icon" aria-hidden="true">
-        ▶
-      </span>
-      <span className="reel-player-play-label">Play reel</span>
-    </button>
+      ) : (
+        <div className="reel-player-loading" aria-hidden="true">
+          <span className="reel-player-loading-label">Loading preview…</span>
+        </div>
+      )}
+    </div>
   );
 }
