@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@import "./pages/main.css";
+@import "./pages/about.css";
+@import "./pages/projects/projects.css";
+@import "./pages/projects/projectsScatter.css";
+@import "./pages/projects/projectsTimeline.css";
+@import "./pages/contact.css";
+@import "./pages/home.css";
+
+@import "./components/navbar.css";
+@import "./components/projectCard.css";
+
+/* ========== Theme: Light blue + greyscale (top-tier portfolio) ========== */
+
+/* ========== Theme: Light blue + greyscale (top-tier portfolio) ========== */
+/* Dark is default; light overrides when [data-theme="light"] */
+
+:root,
+[data-theme="dark"] {
+  --bg: #12100e;
+  --bg-elevated: #1a1714;
+  --surface: #1e1b18;
+  --surface-hover: #262220;
+  --text: #f5f0eb;
+  --text-muted: #a89f96;
+  --text-subtle: #7a726a;
+  --accent: #f4a261;
+  --accent-soft: rgba(244, 162, 97, 0.15);
+  --accent-muted: #e76f51;
+  --accent-warm: #e9c46a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --glow: rgba(244, 162, 97, 0.2);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --hero-gradient-start: #12100e;
+  --hero-gradient-mid: #1a1512;
+  --hero-gradient-end: #0d0b0a;
+  --card-bg: rgba(30, 27, 24, 0.92);
+  --orb-left: rgba(244, 162, 97, 0.2);
+  --orb-right: rgba(231, 111, 81, 0.14);
+  --orb-warm: rgba(233, 196, 106, 0.12);
+  --section-warm-bg: rgba(244, 162, 97, 0.06);
+}
+
+[data-theme="light"] {
+  --bg: #faf7f4;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #f8f4f0;
+  --text: #2d2926;
+  --text-muted: #6b635c;
+  --text-subtle: #9a918a;
+  --accent: #d97706;
+  --accent-soft: rgba(217, 119, 6, 0.12);
+  --accent-muted: #ea580c;
+  --accent-warm: #ca8a04;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --glow: rgba(217, 119, 6, 0.15);
+  --shadow: rgba(0, 0, 0, 0.1);
+  --hero-gradient-start: #fef8f3;
+  --hero-gradient-mid: #fdf3eb;
+  --hero-gradient-end: #faf7f4;
+  --card-bg: rgba(255, 255, 255, 0.94);
+  --orb-left: rgba(244, 162, 97, 0.22);
+  --orb-right: rgba(231, 111, 81, 0.14);
+  --orb-warm: rgba(233, 196, 106, 0.18);
+  --section-warm-bg: rgba(244, 162, 97, 0.08);
+}
+
+/* Default (no-js or pre-hydrate) – dark */
+:root {
+  --background: var(--bg, #0c0f14);
+  --foreground: var(--text, #e6edf3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Prevent flash: set theme from localStorage before paint */
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.water-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 40%),
+    radial-gradient(circle at 55% 60%, rgba(88, 166, 255, 0.5), rgba(37, 99, 235, 0.35) 55%, rgba(0, 0, 0, 0) 70%);
+  box-shadow:
+    0 10px 28px var(--glow),
+    0 8px 22px var(--glow);
+  filter: blur(0);
+  opacity: 0.85;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-cursor {
+    display: none;
+  }
+}
