@@ -13,13 +13,25 @@ export default function ContentCategorySection({
       ? [...category.items].reverse()
       : category.items;
 
+  const isFeaturedPair =
+    category.id === "clog-style" && items.length === 2;
+
   return (
-    <div className="content-category">
+    <div
+      className={
+        "content-category" +
+        (isFeaturedPair ? " content-category--featured-pair" : "")
+      }
+    >
       <header className="content-category-header">
         <h3 className="content-category-title">{category.title}</h3>
         <p className="content-category-desc">{category.description}</p>
       </header>
-      <div className="reel-grid">
+      <div
+        className={
+          "reel-grid" + (isFeaturedPair ? " reel-grid--featured-pair" : "")
+        }
+      >
         {items.map((item) => (
           <ReelCard key={item.id} item={item} />
         ))}

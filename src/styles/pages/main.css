@@ -4,6 +4,6 @@
     padding: 5rem 1.5rem 2rem;
     position: relative;
     z-index: 2;
-    background: var(--bg);
+    background: transparent;
   }
 }

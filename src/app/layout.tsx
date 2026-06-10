@@ -5,6 +5,7 @@ import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import { Providers } from "./providers";
 import FluidCursor from "@/components/FluidCursor";
+import SiteBackground from "@/components/SiteBackground";
 
 export const metadata: Metadata = {
   title: "Bhakthi Salimath | Digital Media Ambassador Portfolio",
@@ -38,6 +39,7 @@ export default function RootLayout({
           {themeScript}
         </Script>
         <Providers>
+          <SiteBackground />
           <FluidCursor />
           <Navbar />
           <main className="main-layout">{children}</main>

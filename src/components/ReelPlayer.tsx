@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  getInstagramEmbedUrl,
-  isInstagramReelUrl,
-} from "@/utils/instagram";
+import { getEmbeddableVideo } from "@/utils/videoEmbed";
 
 type ReelPlayerProps = {
   link: string;
@@ -14,12 +11,11 @@ type ReelPlayerProps = {
 export default function ReelPlayer({ link, title }: ReelPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
-  const embedUrl = getInstagramEmbedUrl(link);
-  const canEmbed = isInstagramReelUrl(link) && embedUrl != null;
+  const embed = getEmbeddableVideo(link);
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el || !canEmbed) return;
+    if (!el || !embed) return;
 
     if (!("IntersectionObserver" in window)) {
       setShouldLoad(true);
@@ -38,9 +34,9 @@ export default function ReelPlayer({ link, title }: ReelPlayerProps) {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [canEmbed]);
+  }, [embed]);
 
-  if (!canEmbed) {
+  if (!embed) {
     return (
       <div className="reel-player reel-player--placeholder">
         <span className="reel-player-placeholder-label">Reel preview</span>
@@ -50,11 +46,14 @@ export default function ReelPlayer({ link, title }: ReelPlayerProps) {
   }
 
   return (
-    <div ref={containerRef} className="reel-player reel-player--embed">
+    <div
+      ref={containerRef}
+      className={`reel-player reel-player--embed reel-player--${embed.type}`}
+    >
       {shouldLoad ? (
         <iframe
-          src={embedUrl}
-          title={`Instagram reel: ${title}`}
+          src={embed.embedUrl}
+          title={`${embed.type === "tiktok" ? "TikTok" : "Instagram"}: ${title}`}
           className="reel-player-iframe"
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
