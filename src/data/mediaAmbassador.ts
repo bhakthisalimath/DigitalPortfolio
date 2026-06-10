@@ -81,9 +81,9 @@ export const mediaAmbassadorCopy = {
   contentCategories: [
     {
       id: "clog-style",
-      title: "Clog-Style Content",
+      title: "",
       description:
-        "Creative clog-style short-form content — my top-performing society reel alongside a personal mini vlog on TikTok.",
+        "My top-performing society reel alongside a personal mini vlog on TikTok.",
       items: [
         {
           id: "clog-featured",
@@ -341,11 +341,6 @@ export const mediaAmbassadorCopy = {
         label: "Top reel",
         value: "24,200",
         detail: "views on top-performing reel (hook ideation)",
-      },
-      {
-        label: "Engagement",
-        value: "1.1%",
-        detail: "engagement rate on top-performing reel",
       },
       {
         label: "Total interactions",
