@@ -1,19 +1,12 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import ContentCategorySection from "@/components/ContentCategorySection";
 import { mediaAmbassadorCopy } from "@/data/mediaAmbassador";
 
 const copy = mediaAmbassadorCopy;
 
 export default function HomePage() {
-  const scrollTo = useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, []);
-
   useEffect(() => {
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>(".reveal-on-scroll")
@@ -42,57 +35,10 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      {/* ===== Hero ===== */}
-      <section className="hero-section reveal-visible">
-        <div className="hero-card">
-          <div className="hero-avatar-floating">
-            <img
-              src="/avatar/me1.jpg?v=2"
-              alt="Bhakthi Salimath"
-              className="hero-avatar-floating-img"
-            />
-          </div>
-
-          <header className="hero-header">
-            <p className="hero-kicker">USyd OLE · Digital Media Ambassador</p>
-            <h1 className="hero-title">{copy.hero.headline}</h1>
-            <p className="hero-subheading">{copy.hero.subheading}</p>
-          </header>
-
-          <p className="hero-intro">{copy.hero.intro}</p>
-
-          <div className="hero-cta-row">
-            <button
-              type="button"
-              className="section-cta section-cta--primary"
-              onClick={() => scrollTo("content-impact")}
-            >
-              Content Impact
-            </button>
-            <button
-              type="button"
-              className="section-cta"
-              onClick={() => scrollTo("featured-reels")}
-            >
-              {copy.hero.cta.reels}
-            </button>
-          </div>
-        </div>
-
-        <button
-          type="button"
-          className="hero-scroll-button"
-          onClick={() => scrollTo("content-impact")}
-          aria-label={copy.hero.arrowLabel}
-        >
-          <span className="hero-scroll-icon">↓</span>
-        </button>
-      </section>
-
       {/* ===== 1. Content Impact ===== */}
       <section
         id="content-impact"
-        className="home-section reveal-on-scroll"
+        className="home-section reveal-on-scroll reveal-visible"
       >
         <header className="home-section-header">
           <h2 className="home-section-title">{copy.contentImpact.title}</h2>
