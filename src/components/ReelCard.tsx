@@ -1,14 +1,20 @@
 import type { ContentItem } from "@/data/mediaAmbassador";
 import ReelPlayer from "@/components/ReelPlayer";
-import { isInstagramReelUrl } from "@/utils/instagram";
+import { getEmbeddableVideo } from "@/utils/videoEmbed";
 
 type ReelCardProps = {
   item: ContentItem;
 };
 
+function externalLinkLabel(platform: ContentItem["platform"]): string {
+  if (platform === "TikTok") return "Open on TikTok →";
+  if (platform === "Instagram") return "Open on Instagram →";
+  return "View video →";
+}
+
 export default function ReelCard({ item }: ReelCardProps) {
   const isPlaceholderLink = item.link.startsWith("[insert");
-  const canPlayInline = isInstagramReelUrl(item.link);
+  const canPlayInline = getEmbeddableVideo(item.link) != null;
 
   return (
     <article className="reel-card">
@@ -30,7 +36,7 @@ export default function ReelCard({ item }: ReelCardProps) {
           rel="noreferrer"
           className="reel-card-link reel-card-link--secondary"
         >
-          Open on Instagram →
+          {externalLinkLabel(item.platform)}
         </a>
       ) : !isPlaceholderLink ? (
         <a
@@ -39,7 +45,7 @@ export default function ReelCard({ item }: ReelCardProps) {
           rel="noreferrer"
           className="reel-card-link"
         >
-          View reel →
+          {externalLinkLabel(item.platform)}
         </a>
       ) : null}
 
@@ -55,10 +61,6 @@ export default function ReelCard({ item }: ReelCardProps) {
         <div className="reel-card-stat">
           <dt>Comments</dt>
           <dd>{item.stats.comments}</dd>
-        </div>
-        <div className="reel-card-stat">
-          <dt>Shares / Saves</dt>
-          <dd>{item.stats.sharesSaves}</dd>
         </div>
       </dl>
       {item.stats.engagementNote ? (

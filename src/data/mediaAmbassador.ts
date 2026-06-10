@@ -29,7 +29,6 @@ export type ContentItem = {
     views: string;
     likes: string;
     comments: string;
-    sharesSaves: string;
     engagementNote: string;
   };
 };
@@ -98,7 +97,7 @@ export const mediaAmbassadorCopy = {
       id: "clog-style",
       title: "Clog-Style Content",
       description:
-        "Creative clog-style short-form content I developed — hook-driven, student-focused storytelling. My strongest-performing example below.",
+        "Creative clog-style short-form content — my top-performing society reel alongside a personal mini vlog on TikTok.",
       items: [
         {
           id: "clog-featured",
@@ -107,14 +106,28 @@ export const mediaAmbassadorCopy = {
           link: "https://www.instagram.com/reel/DILeMTfTyRO/",
           role: "hook ideation" as ContentRole,
           description:
-            "Vlog-style reel I helped ideate — strongest performer in this portfolio by views, likes, and comments.",
+            "Reel I helped ideate — strongest performer in this portfolio by views, likes, and comments.",
           stats: {
             views: "24,200",
             likes: "244",
             comments: "13",
-            sharesSaves: "—",
             engagementNote:
               "Best-performing reel I helped ideate — 24.2K views.",
+          },
+        },
+        {
+          id: "clog-mini-vlog",
+          title: "Personal mini vlog",
+          platform: "TikTok" as ContentPlatform,
+          link: "https://www.tiktok.com/@bhakthi_/video/7632293518689553685",
+          role: "mini vlog creator" as ContentRole,
+          description:
+            "Personal mini vlog on @bhakthi_ — student-focused short-form storytelling in clog style.",
+          stats: {
+            views: "—",
+            likes: "40",
+            comments: "—",
+            engagementNote: "Personal mini vlog on TikTok (@bhakthi_).",
           },
         },
       ],
@@ -137,7 +150,6 @@ export const mediaAmbassadorCopy = {
             views: "4,267",
             likes: "42",
             comments: "6",
-            sharesSaves: "—",
             engagementNote: "Oldest reel in my on-camera GDG series.",
           },
         },
@@ -153,7 +165,6 @@ export const mediaAmbassadorCopy = {
             views: "3,338",
             likes: "35",
             comments: "2",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -169,7 +180,6 @@ export const mediaAmbassadorCopy = {
             views: "4,342",
             likes: "56",
             comments: "3",
-            sharesSaves: "—",
             engagementNote: "Strong like count relative to views.",
           },
         },
@@ -185,7 +195,6 @@ export const mediaAmbassadorCopy = {
             views: "3,243",
             likes: "29",
             comments: "3",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -201,7 +210,6 @@ export const mediaAmbassadorCopy = {
             views: "3,397",
             likes: "27",
             comments: "2",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -217,7 +225,6 @@ export const mediaAmbassadorCopy = {
             views: "5,444",
             likes: "55",
             comments: "3",
-            sharesSaves: "—",
             engagementNote: "Solid mid-series performer by views and likes.",
           },
         },
@@ -233,7 +240,6 @@ export const mediaAmbassadorCopy = {
             views: "3,889",
             likes: "35",
             comments: "1",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -249,7 +255,6 @@ export const mediaAmbassadorCopy = {
             views: "5,854",
             likes: "26",
             comments: "1",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -265,7 +270,6 @@ export const mediaAmbassadorCopy = {
             views: "6,630",
             likes: "50",
             comments: "1",
-            sharesSaves: "—",
             engagementNote: "Second-highest views among my on-camera GDG reels.",
           },
         },
@@ -281,7 +285,6 @@ export const mediaAmbassadorCopy = {
             views: "4,554",
             likes: "33",
             comments: "1",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -297,7 +300,6 @@ export const mediaAmbassadorCopy = {
             views: "8,685",
             likes: "32",
             comments: "0",
-            sharesSaves: "—",
             engagementNote:
               "Highest views among my on-camera @gdg.usyd reels.",
           },
@@ -314,7 +316,6 @@ export const mediaAmbassadorCopy = {
             views: "4,748",
             likes: "22",
             comments: "1",
-            sharesSaves: "—",
             engagementNote: "",
           },
         },
@@ -330,7 +331,6 @@ export const mediaAmbassadorCopy = {
             views: "4,673",
             likes: "26",
             comments: "3",
-            sharesSaves: "—",
             engagementNote: "Latest reel in my on-camera GDG series.",
           },
         },

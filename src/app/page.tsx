@@ -44,18 +44,10 @@ export default function HomePage() {
     <div className="home-page">
       {/* ===== Hero ===== */}
       <section className="hero-section reveal-visible">
-        <div className="hero-bg">
-          <div className="hero-bg-orb hero-bg-orb--left" />
-          <div className="hero-bg-orb hero-bg-orb--right" />
-          <div className="hero-bg-orb hero-bg-orb--warm" />
-          <div className="hero-bg-radial" />
-          <div className="hero-bg-fade" />
-        </div>
-
         <div className="hero-card">
           <div className="hero-avatar-floating">
             <img
-              src="/avatar/me1.jpg"
+              src="/avatar/me1.jpg?v=2"
               alt="Bhakthi Salimath"
               className="hero-avatar-floating-img"
             />
