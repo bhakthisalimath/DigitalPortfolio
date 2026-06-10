@@ -55,7 +55,9 @@ export default function ReelCard({ item }: ReelCardProps) {
           <dd>{item.stats.sharesSaves}</dd>
         </div>
       </dl>
-      <p className="reel-card-engagement">{item.stats.engagementNote}</p>
+      {item.stats.engagementNote ? (
+        <p className="reel-card-engagement">{item.stats.engagementNote}</p>
+      ) : null}
     </article>
   );
 }
