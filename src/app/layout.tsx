@@ -8,9 +8,9 @@ import FluidCursor from "@/components/FluidCursor";
 import SiteBackground from "@/components/SiteBackground";
 
 export const metadata: Metadata = {
-  title: "Bhakthi Salimath | Digital Media Ambassador Portfolio",
+  title: "Bhakthi Salimath | Content Portfolio",
   description:
-    "Digital Media Ambassador portfolio for the USyd OLE In-Country Experience — short-form video, student storytelling, and cultural content by Bhakthi Salimath.",
+    "Short-form video and digital content portfolio by Bhakthi Salimath.",
 };
 
 const themeScript = `

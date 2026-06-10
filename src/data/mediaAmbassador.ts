@@ -41,20 +41,6 @@ export type ContentCategory = {
 };
 
 export const mediaAmbassadorCopy = {
-  hero: {
-    headline: "Digital Media Ambassador Portfolio",
-    subheading:
-      "Short-form video, student storytelling, and cultural content created with a focus on connection, clarity, and audience engagement.",
-    intro:
-      "I'm Bhakthi Salimath — a Bachelor of Advanced Computing student at the University of Sydney, Media Relations Associate at GDG on Campus USYD, and upcoming OLE In-Country Experience participant in Japan.",
-    cta: {
-      reels: "View Featured Reels",
-      experience: "See Content Experience",
-      contact: "Contact Me",
-    },
-    arrowLabel: "Scroll to content",
-  },
-
   scholarshipFit: {
     title: "Why I'm suited to be a Digital Media Ambassador",
     subtitle:
